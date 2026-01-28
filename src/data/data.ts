@@ -14,7 +14,7 @@ export const aboutData = {
   title: 'About',
   firstParagraph: `I'm the kind of person who loves solving problems through creative, detail-focused solutions. I approach each project with care and precision, always striving to make a positive impact.`,
   secondParagraph:
-    'Apart from programming, I enjoy a wide range of interests— Exploring new places, motorsports, gym,music, good coffee and gaming.',
+    'Apart from programming, I enjoy a wide range of interests — Exploring new places, motorsports, gym, music, good coffee and gaming.',
 };
 
 export interface Experience {
@@ -39,12 +39,12 @@ export const experienceData: experienceDataProps = {
     {
       company: 'Genially',
       logo: geniallyLogo,
-      location: '',
+      location: 'Córdoba, Spain',
       role: 'Senior Frontend Developer',
       startDate: new Date('2020-03-01'),
       endDate: null,
       description:
-        'I work as a Senior Frontend Developer in a product company that builds an interactive content creation platform. After six years rotating through multiple squads, I’ve gained a deep, end-to-end understanding of the application. I collaborate closely with product managers, designers and backend engineers to deliver scalable, polished features, often through pair programming. I take ownership of complex tasks, contribute to architectural decisions, and ensure consistency through a refined Design System. Our work is guided by a strong event-tracking system that helps measure feature impact and continuously improve the user experience.',
+        'Spent six years evolving an interactive content platform. Rotating through multiple squads gave me a deep, end-to-end understanding of the product. I collaborate closely with design and backend teams to ship scalable features, often pair-programming. Beyond coding, I drive architectural decisions and maintain our Design System, using data to continuously refine the user experience.',
       skills: [
         'React',
         'TypeScript',
@@ -64,10 +64,10 @@ export const experienceData: experienceDataProps = {
       logo: corusLogo,
       location: 'Madrid, Spain',
       role: 'Full Stack Developer',
-      startDate: new Date('2018-07-01'),
+      startDate: new Date('2018-06-01'),
       endDate: new Date('2020-03-01'),
       description:
-        'Worked in a small, agile team delivering solutions for clients across different industries. While contributing to full-stack development, I began to focus more on the frontend and gradually took responsibility for that area, shaping user interfaces and improving overall usability. Collaborated closely with clients to refine requirements and ensure timely, high-quality deliveries across multiple parallel projects.',
+        'Delivered agile solutions for diverse clients. While starting as a full-stack developer, I naturally gravitated toward the frontend, taking ownership of UI and usability. I worked directly with clients to refine requirements, ensuring high-quality delivery across multiple parallel projects.',
       skills: [
         'React',
         'Vue',
@@ -85,12 +85,12 @@ export const experienceData: experienceDataProps = {
     {
       company: 'Glownet',
       logo: glownetLogo,
-      location: '',
+      location: 'Madrid, Spain',
       role: 'Full Stack Developer',
       startDate: new Date('2017-06-01'),
-      endDate: new Date('2018-06-01'),
+      endDate: new Date('2018-01-01'),
       description:
-        'I contributed to a cashless payment system used across major music festivals, developing features for NFC wristband transactions, ticketing and real-time dashboards. During this period, I strengthened my full-stack foundations and gained valuable soft skills by working directly with clients and festival staff during live events. I supported high-demand operations on-site, ensuring smooth performance and resolving issues under pressure.',
+        'Built cashless payment ecosystems for major music festivals, covering NFC transactions and real-time dashboards. I combined development with on-site support during live events, ensuring system stability under pressure and working side-by-side with organizers to resolve critical issues in real-time.',
       skills: [
         'Ruby on Rails',
         'jQuery',
@@ -110,9 +110,9 @@ export const experienceData: experienceDataProps = {
       location: 'Madrid, Spain',
       role: 'Full Stack Developer',
       startDate: new Date('2017-01-01'),
-      endDate: new Date('2017-06-01'),
+      endDate: new Date('2017-05-01'),
       description:
-        'I worked as a Full Stack Developer on a global classifieds and information platform operating in nearly 70 countries and 12 languages. This role helped me build a solid foundation in MVC architectures, Linux environments and full-stack development practices. I contributed to features across multiple modules, improved reliability in high-traffic areas and collaborated with cross-functional teams to deliver consistent, user-focused experiences for an international audience.',
+        'Contributed to a global platform operating in 70 countries. This role established my full-stack foundations, particularly in MVC architecture and system reliability. I focused on maintaining high-traffic modules and delivering consistent, user-focused features for a massive international audience.',
       skills: [
         'Ruby on Rails',
         'jQuery',

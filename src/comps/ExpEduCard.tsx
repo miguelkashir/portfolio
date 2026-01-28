@@ -1,44 +1,71 @@
 import { Calendar } from 'lucide-react';
+import { useMemo } from 'react';
 
 interface ExpEduCardProps {
-  logo?: string;
-  title: string;
-  subtitle: string;
   description: string;
+  endDate: Date | null;
+  logo?: string;
+  showDuration?: boolean;
   skills?: string[];
   startDate: Date;
-  endDate: Date | null;
+  subtitle: string;
+  title: string;
 }
 
 export const ExpEduCard = ({
-  logo,
-  title,
-  subtitle,
   description,
+  endDate,
+  logo,
+  showDuration = false,
   skills,
   startDate,
-  endDate,
+  subtitle,
+  title,
 }: ExpEduCardProps) => {
-  const duration =
-    Math.floor((endDate || new Date()).getTime() - startDate.getTime()) /
-    (1000 * 60 * 60 * 24 * 365);
+  const durationText = useMemo(() => {
+    const durationDays =
+      Math.floor((endDate || new Date()).getTime() - startDate.getTime()) /
+      (1000 * 60 * 60 * 24);
 
-  const durationText =
-    duration < 1
-      ? '< 1 year'
-      : `${Math.round(duration)} year${Math.round(duration) > 1 ? 's' : ''}`;
+    let calculatedText;
+
+    if (durationDays < 365) {
+      const durationMonths = Math.round(durationDays / 30.4375);
+      const months = Math.max(1, durationMonths);
+      calculatedText = `${months} month${months > 1 ? 's' : ''}`;
+    } else {
+      const durationYears = durationDays / 365;
+      const roundedYears = Math.round(durationYears * 10) / 10;
+
+      if (roundedYears % 1 === 0) {
+        const integerYears = Math.round(roundedYears);
+        calculatedText = `${integerYears} year${integerYears > 1 ? 's' : ''}`;
+      } else {
+        const decimalYears = roundedYears.toFixed(1);
+        calculatedText = `${decimalYears} year${roundedYears > 1 ? 's' : ''}`;
+      }
+    }
+
+    return calculatedText;
+  }, [startDate, endDate]);
 
   return (
-    <div className="max-h flex flex-row gap-4 mb-6 p-4 bg-gray-50 rounded-lg transition-shadow duration-300">
-      {logo && (
-        <img className="w-12 h-12 object-contain" src={logo} alt={subtitle} />
-      )}
+    <div className="flex flex-col gap-2 p-4 bg-gray-50 rounded-lg transition-shadow duration-300">
+      <div className="flex flex-row gap-6">
+        <div className="flex items-center justify-center">
+          {logo && (
+            <img
+              className="w-12 h-12 object-contain"
+              src={logo}
+              alt={subtitle}
+            />
+          )}
+        </div>
 
-      <div className="w-full flex flex-col">
-        <div className="flex justify-between items-start">
-          <h3 className="text-xl font-semibold text-gray-800">{title}</h3>
-          <span className="text-sm text-gray-500 flex items-center shrink-0 ml-4">
+        <div>
+          <span className="text-sm text-gray-500 flex items-center">
             <Calendar className="w-4 h-4 mr-1" />
+
             {`${startDate.toLocaleDateString(undefined, {
               year: 'numeric',
               month: 'short',
@@ -49,11 +76,19 @@ export const ExpEduCard = ({
                     month: 'short',
                   })
                 : 'Present'
-            } (${durationText})`}
+            }`}
+            {showDuration && ` (${durationText})`}
           </span>
+          <h3 className="text-xl font-semibold text-gray-800">{title}</h3>
+          <p className="text-pink-600 font-medium mb-2">{subtitle}</p>
         </div>
-        <p className="text-pink-600 font-medium mb-2">{subtitle}</p>
+      </div>
+
+      <div>
         <p className="text-gray-600 mb-3 text-sm">{description}</p>
+      </div>
+
+      {!!skills?.length && (
         <div className="flex flex-wrap gap-2">
           {skills?.map(tag => (
             <span
@@ -64,7 +99,7 @@ export const ExpEduCard = ({
             </span>
           ))}
         </div>
-      </div>
+      )}
     </div>
   );
 };
