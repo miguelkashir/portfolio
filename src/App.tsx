@@ -2,8 +2,9 @@ import { Header } from './comps/Header';
 import {
   Briefcase,
   Code,
-  GraduationCap,
+  Construction,
   Globe,
+  GraduationCap,
   Layers,
   User,
 } from 'lucide-react';
@@ -25,6 +26,10 @@ export const App = () => {
     <div className="min-w-sm flex flex-col items-center bg-gray-50 text-gray-800 antialiased">
       <Header />
       <div className="max-w-6xl flex flex-col justify-center align-center gap-4">
+        {/* WIP*/}
+        <Section title="Work in Progress!" icon={<Construction />} />
+        {/* WIP */}
+
         <Section title={aboutData.title} icon={<User />}>
           <Paragraph>{aboutData.firstParagraph}</Paragraph>
           <Paragraph>{aboutData.secondParagraph}</Paragraph>
