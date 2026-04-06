@@ -1,5 +1,5 @@
 import { Calendar } from 'lucide-react';
-import { useMemo } from 'react';
+import { formatDuration } from '../utils/formatDuration';
 
 interface ExpEduCardProps {
   description: string;
@@ -22,45 +22,20 @@ export const ExpEduCard = ({
   subtitle,
   title,
 }: ExpEduCardProps) => {
-  const durationText = useMemo(() => {
-    const durationDays =
-      Math.floor((endDate || new Date()).getTime() - startDate.getTime()) /
-      (1000 * 60 * 60 * 24);
-
-    let calculatedText;
-
-    if (durationDays < 365) {
-      const durationMonths = Math.round(durationDays / 30.4375);
-      const months = Math.max(1, durationMonths);
-      calculatedText = `${months} month${months > 1 ? 's' : ''}`;
-    } else {
-      const durationYears = durationDays / 365;
-      const roundedYears = Math.round(durationYears * 10) / 10;
-
-      if (roundedYears % 1 === 0) {
-        const integerYears = Math.round(roundedYears);
-        calculatedText = `${integerYears} year${integerYears > 1 ? 's' : ''}`;
-      } else {
-        const decimalYears = roundedYears.toFixed(1);
-        calculatedText = `${decimalYears} year${roundedYears > 1 ? 's' : ''}`;
-      }
-    }
-
-    return calculatedText;
-  }, [startDate, endDate]);
+  const durationText = formatDuration(startDate, endDate);
 
   return (
     <div className="flex flex-col gap-2 p-4 bg-gray-50 rounded-lg transition-shadow duration-300">
       <div className="flex flex-row gap-6">
-        <div className="flex items-center justify-center">
-          {logo && (
+        {logo && (
+          <div className="flex items-center justify-center">
             <img
               className="w-12 h-12 object-contain"
               src={logo}
               alt={subtitle}
             />
-          )}
-        </div>
+          </div>
+        )}
 
         <div>
           <span className="text-sm text-gray-500 flex items-center">
@@ -84,13 +59,11 @@ export const ExpEduCard = ({
         </div>
       </div>
 
-      <div>
-        <p className="text-gray-600 mb-3 text-sm">{description}</p>
-      </div>
+      <p className="text-gray-600 mb-3 text-sm">{description}</p>
 
       {!!skills?.length && (
         <div className="flex flex-wrap gap-2">
-          {skills?.map(tag => (
+          {skills.map(tag => (
             <span
               key={tag}
               className="px-3 py-1 text-xs font-medium text-pink-700 bg-pink-100 rounded-full"

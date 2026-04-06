@@ -13,18 +13,23 @@ import {
   aboutData,
   educationData,
   experienceData,
+  headerData,
   languagesData,
   projectsData,
   skillsData,
 } from './data/data';
 import { Section } from './comps/Section';
-import { ExpEduCard } from './comps/ExpEduCard';
 import { Paragraph } from './comps/Paragraph';
+import { ExperienceList } from './comps/ExperienceList';
+import { EducationList } from './comps/EducationList';
+import { ProjectList } from './comps/ProjectList';
+import { SkillList } from './comps/SkillList';
+import { LanguageList } from './comps/LanguageList';
 
 export const App = () => {
   return (
     <div className="min-w-sm flex flex-col items-center bg-gray-50 text-gray-800 antialiased">
-      <Header />
+      <Header name={headerData.name} role={headerData.role} />
       <div className="max-w-6xl flex flex-col justify-center align-center gap-4">
         {/* WIP*/}
         <Section title="Work in Progress!" icon={<Construction />} />
@@ -36,67 +41,23 @@ export const App = () => {
         </Section>
 
         <Section title={experienceData.title} icon={<Briefcase />}>
-          {experienceData.experiences.map((experience, index) => (
-            <ExpEduCard
-              key={index}
-              description={experience.description}
-              endDate={experience.endDate}
-              logo={experience.logo}
-              showDuration
-              skills={experience.skills}
-              startDate={experience.startDate}
-              subtitle={experience.company}
-              title={experience.role}
-            />
-          ))}
+          <ExperienceList experiences={experienceData.experiences} />
         </Section>
 
         <Section title={educationData.title} icon={<GraduationCap />}>
-          <div>
-            {educationData.degrees.map((edu, index) => (
-              <ExpEduCard
-                key={index}
-                description={edu.description}
-                endDate={edu.endDate}
-                logo={edu.logo}
-                startDate={edu.startDate}
-                subtitle={edu.institution}
-                title={edu.degree}
-              />
-            ))}
-          </div>
+          <EducationList degrees={educationData.degrees} />
         </Section>
 
         <Section title={projectsData.title} icon={<Layers />}>
-          {projectsData.projects.map((project, index) => (
-            <div key={index}>
-              <p className="font-semibold">{project.name}</p>
-              <p>{project.description}</p>
-              <p className="text-sm">{project.technologies}</p>
-            </div>
-          ))}
+          <ProjectList projects={projectsData.projects} />
         </Section>
 
         <Section title={skillsData.title} icon={<Code />}>
-          <div className="flex flex-wrap gap-2">
-            {skillsData.skills.map(skill => (
-              <span
-                key={skill}
-                className="px-3 py-1 text-xs font-medium text-pink-700 bg-pink-100 rounded-full"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
+          <SkillList skills={skillsData.skills} />
         </Section>
 
         <Section title={languagesData.title} icon={<Globe />}>
-          {languagesData.languages.map((lang, index) => (
-            <div key={index}>
-              <p className="font-semibold">{lang.language}</p>
-              <p className="text-sm">{lang.proficiency}</p>
-            </div>
-          ))}
+          <LanguageList languages={languagesData.languages} />
         </Section>
       </div>
     </div>

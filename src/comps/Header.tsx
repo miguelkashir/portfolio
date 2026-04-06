@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
-import { headerData } from '../data/data';
 
-const { name, role } = headerData;
+interface HeaderProps {
+  name: string;
+  role: string;
+}
 
 const SCROLL_TRIGGER = 50;
 
-export const Header = () => {
+export const Header = ({ name, role }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {

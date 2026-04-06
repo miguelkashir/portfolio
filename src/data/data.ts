@@ -5,6 +5,8 @@ import justLandedLogo from '../assets/justlanded.jpg';
 import ironhackLogo from '../assets/ironhack.jpg';
 import trassierraLogo from '../assets/trassierra.jpg';
 
+import type { Degree, Experience, Language, Project } from '../types';
+
 export const headerData = {
   name: 'Miguel Angel Alvarez',
   role: 'Senior Frontend Developer',
@@ -17,23 +19,7 @@ export const aboutData = {
     'Apart from programming, I enjoy a wide range of interests — Exploring new places, motorsports, gym, music, good coffee and gaming.',
 };
 
-export interface Experience {
-  company: string;
-  logo?: string;
-  location: string;
-  role: string;
-  startDate: Date;
-  endDate: Date | null;
-  description: string;
-  skills: string[];
-}
-
-interface experienceDataProps {
-  title: string;
-  experiences: Experience[];
-}
-
-export const experienceData: experienceDataProps = {
+export const experienceData: { title: string; experiences: Experience[] } = {
   title: 'Experience',
   experiences: [
     {
@@ -128,7 +114,7 @@ export const experienceData: experienceDataProps = {
   ],
 };
 
-export const educationData = {
+export const educationData: { title: string; degrees: Degree[] } = {
   title: 'Education',
   degrees: [
     {
@@ -151,7 +137,7 @@ export const educationData = {
   ],
 };
 
-export const projectsData = {
+export const projectsData: { title: string; projects: Project[] } = {
   title: 'Projects',
   projects: [
     {
@@ -184,7 +170,7 @@ export const skillsData = {
   ],
 };
 
-export const languagesData = {
+export const languagesData: { title: string; languages: Language[] } = {
   title: 'Languages',
   languages: [
     {
