@@ -183,6 +183,7 @@ export const experienceData: { title: string; experiences: Experience[] } = {
         'Spent six years evolving an interactive content platform. Rotating through multiple squads gave me a deep, end-to-end understanding of the product. I collaborate closely with design and backend teams to ship scalable features, often pair-programming. Beyond coding, I drive architectural decisions and maintain our Design System, using data to continuously refine the user experience.',
       skills: [
         Skills.React,
+        Skills.JavaScript,
         Skills.TypeScript,
         Skills.MobX,
         Skills.StyledComponents,
