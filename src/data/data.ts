@@ -24,6 +24,7 @@ export const Skills = {
     order: 1,
   },
   Ruby: { category: 'language', level: 'proficient', name: 'Ruby', order: 2 },
+
   // Frontend
   React: { category: 'frontend', level: 'expert', name: 'React', order: 0 },
   MobX: { category: 'frontend', level: 'expert', name: 'MobX', order: 1 },
@@ -55,6 +56,7 @@ export const Skills = {
     order: 8,
   },
   SCSS: { category: 'frontend', level: 'proficient', name: 'SCSS', order: 9 },
+
   // Backend
   Node: { category: 'backend', level: 'proficient', name: 'Node', order: 0 },
   RubyOnRails: {
@@ -75,6 +77,7 @@ export const Skills = {
     name: 'PostgreSQL',
     order: 3,
   },
+
   // Testing
   ReactTestingLibrary: {
     category: 'testing',
@@ -92,35 +95,43 @@ export const Skills = {
     name: 'Selenium',
     order: 5,
   },
+
   // Tooling
-  Git: { category: 'tooling', level: 'expert', name: 'Git', order: 0 },
-  SCRUM: { category: 'tooling', level: 'expert', name: 'SCRUM', order: 1 },
+  Vite: { category: 'tooling', level: 'proficient', name: 'Vite', order: 0 },
   Storybook: {
     category: 'tooling',
-    level: 'expert',
+    level: 'proficient',
     name: 'Storybook',
+    order: 1,
+  },
+  DesignSystem: {
+    category: 'tooling',
+    level: 'proficient',
+    name: 'Design System',
     order: 2,
   },
-  Vite: { category: 'tooling', level: 'proficient', name: 'Vite', order: 3 },
+  Git: { category: 'tooling', level: 'proficient', name: 'Git', order: 3 },
+  SCRUM: { category: 'tooling', level: 'proficient', name: 'SCRUM', order: 4 },
   Snowplow: {
     category: 'tooling',
     level: 'proficient',
     name: 'Snowplow',
-    order: 4,
+    order: 5,
   },
   ClickUp: {
     category: 'tooling',
     level: 'proficient',
     name: 'ClickUp',
-    order: 5,
+    order: 6,
   },
-  JIRA: { category: 'tooling', level: 'proficient', name: 'JIRA', order: 6 },
+  JIRA: { category: 'tooling', level: 'proficient', name: 'JIRA', order: 7 },
   Redmine: {
     category: 'tooling',
     level: 'proficient',
     name: 'Redmine',
-    order: 7,
+    order: 8,
   },
+
   // AI
   ClaudeCode: {
     category: 'ai',
@@ -183,6 +194,7 @@ export const experienceData: { title: string; experiences: Experience[] } = {
         Skills.Git,
         Skills.SCRUM,
         Skills.Copilot,
+        Skills.DesignSystem,
       ],
     },
     {
@@ -195,10 +207,11 @@ export const experienceData: { title: string; experiences: Experience[] } = {
       description:
         'Delivered agile solutions for diverse clients. While starting as a full-stack developer, I naturally gravitated toward the frontend, taking ownership of UI and usability. I worked directly with clients to refine requirements, ensuring high-quality delivery across multiple parallel projects.',
       skills: [
-        Skills.React,
+        Skills.Angular,
         Skills.Vue,
         Skills.Node,
         Skills.JavaScript,
+        Skills.TypeScript,
         Skills.Jest,
         Skills.Mocha,
         Skills.Cypress,
@@ -219,6 +232,7 @@ export const experienceData: { title: string; experiences: Experience[] } = {
         'Built cashless payment ecosystems for major music festivals, covering NFC transactions and real-time dashboards. I combined development with on-site support during live events, ensuring system stability under pressure and working side-by-side with organizers to resolve critical issues in real-time.',
       skills: [
         Skills.Ruby,
+        Skills.RubyOnRails,
         Skills.jQuery,
         Skills.RSpec,
         Skills.Selenium,
@@ -240,6 +254,7 @@ export const experienceData: { title: string; experiences: Experience[] } = {
         'Contributed to a global platform operating in 70 countries. This role established my full-stack foundations, particularly in MVC architecture and system reliability. I focused on maintaining high-traffic modules and delivering consistent, user-focused features for a massive international audience.',
       skills: [
         Skills.Ruby,
+        Skills.RubyOnRails,
         Skills.jQuery,
         Skills.RSpec,
         Skills.Selenium,
