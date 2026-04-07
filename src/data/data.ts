@@ -1,10 +1,3 @@
-import geniallyLogo from '../assets/images/genially.jpg';
-import corusLogo from '../assets/images/corus.jpg';
-import glownetLogo from '../assets/images/glownet.jpg';
-import justLandedLogo from '../assets/images/justlanded.jpg';
-import ironhackLogo from '../assets/images/ironhack.jpg';
-import trassierraLogo from '../assets/images/trassierra.jpg';
-
 import type {
   ContactLink,
   Degree,
@@ -13,6 +6,8 @@ import type {
   Project,
   Skill,
 } from '../types';
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
 export const Skills = {
   JavaScript: { name: 'JavaScript', category: 'language' },
@@ -67,7 +62,7 @@ export const experienceData: { title: string; experiences: Experience[] } = {
   experiences: [
     {
       company: 'Genially',
-      logo: geniallyLogo,
+      logo: `${base}images/genially.jpg`,
       location: 'Córdoba, Spain',
       role: 'Senior Frontend Developer',
       startDate: new Date('2020-03-01'),
@@ -90,7 +85,7 @@ export const experienceData: { title: string; experiences: Experience[] } = {
     },
     {
       company: 'Corus Consulting',
-      logo: corusLogo,
+      logo: `${base}images/corus.jpg`,
       location: 'Madrid, Spain',
       role: 'Full Stack Developer',
       startDate: new Date('2018-06-01'),
@@ -113,7 +108,7 @@ export const experienceData: { title: string; experiences: Experience[] } = {
     },
     {
       company: 'Glownet',
-      logo: glownetLogo,
+      logo: `${base}images/glownet.jpg`,
       location: 'Madrid, Spain',
       role: 'Full Stack Developer',
       startDate: new Date('2017-06-01'),
@@ -135,7 +130,7 @@ export const experienceData: { title: string; experiences: Experience[] } = {
     },
     {
       company: 'Just Landed',
-      logo: justLandedLogo,
+      logo: `${base}images/justlanded.jpg`,
       location: 'Madrid, Spain',
       role: 'Full Stack Developer',
       startDate: new Date('2017-01-01'),
@@ -161,7 +156,7 @@ export const educationData: { title: string; degrees: Degree[] } = {
   title: 'Education',
   degrees: [
     {
-      logo: ironhackLogo,
+      logo: `${base}images/ironhack.jpg`,
       degree: 'Web Development Bootcamp',
       institution: 'Ironhack',
       startDate: new Date('2016-10-01'),
@@ -169,7 +164,7 @@ export const educationData: { title: string; degrees: Degree[] } = {
       description: 'Focused on software development and web technologies.',
     },
     {
-      logo: trassierraLogo,
+      logo: `${base}images/trassierra.jpg`,
       degree:
         'Certificate of Higher Education (HNC), Computer Software Engineering',
       institution: 'IES Trassierra',
