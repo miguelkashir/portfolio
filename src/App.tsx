@@ -2,7 +2,6 @@ import { Header } from './comps/Header';
 import {
   Briefcase,
   Code,
-  Construction,
   Globe,
   GraduationCap,
   Layers,
