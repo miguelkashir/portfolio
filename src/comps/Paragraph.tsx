@@ -5,5 +5,5 @@ interface ParagraphProps {
 }
 
 export const Paragraph = ({ children }: ParagraphProps) => (
-  <p className="text-lg leading-relaxed text-gray-700">{children}</p>
+  <p className="text-base leading-relaxed text-gray-600">{children}</p>
 );

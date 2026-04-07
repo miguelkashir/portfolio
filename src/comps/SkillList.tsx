@@ -55,7 +55,7 @@ export const SkillList = ({ skills }: SkillListProps) => {
   );
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 p-4 bg-gray-50 rounded-lg">
       {CATEGORY_ORDER.filter(cat => grouped[cat].length > 0).map(cat => (
         <div key={cat}>
           <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">

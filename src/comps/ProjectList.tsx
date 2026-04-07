@@ -16,7 +16,7 @@ export const ProjectList = ({ projects }: ProjectListProps) => (
     {projects.map(project => (
       <div
         key={project.name}
-        className="flex flex-col gap-2 p-4 bg-gray-50 rounded-lg transition-shadow duration-300"
+        className="flex flex-col gap-2 p-4 bg-gray-50 rounded-lg transition-shadow duration-300 hover:shadow-md"
       >
         <div className="flex items-center justify-between gap-2">
           <h3 className="text-lg font-semibold text-gray-800">{project.name}</h3>
@@ -56,7 +56,7 @@ export const ProjectList = ({ projects }: ProjectListProps) => (
             )}
           </div>
         </div>
-        <p className="text-gray-600 text-sm">{project.description}</p>
+        <p className="text-gray-600 text-base">{project.description}</p>
         {project.technologies.length > 0 && (
           <div className="flex flex-wrap gap-2">
             {project.technologies.map(tech => (

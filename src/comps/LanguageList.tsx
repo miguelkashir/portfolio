@@ -15,7 +15,7 @@ const DEFAULT_STYLE =
   'px-3 py-1 text-xs font-medium text-pink-400 border border-pink-200 rounded-full';
 
 export const LanguageList = ({ languages }: LanguageListProps) => (
-  <div className="flex flex-wrap gap-8">
+  <div className="flex flex-wrap gap-8 p-4 bg-gray-50 rounded-lg">
     {languages.map(lang => (
       <div key={lang.language} className="flex items-center gap-2">
         <p className="font-semibold text-gray-800">{lang.language}</p>

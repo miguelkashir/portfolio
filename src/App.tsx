@@ -1,10 +1,10 @@
 import { Header } from './comps/Header';
 import {
+  Braces,
   Briefcase,
-  Code,
-  Globe,
+  FolderKanban,
   GraduationCap,
-  Layers,
+  Languages,
   User,
 } from 'lucide-react';
 
@@ -33,10 +33,12 @@ export const App = () => {
         name={headerData.name}
         role={headerData.role}
       />
-      <div className="max-w-6xl flex flex-col justify-center align-center gap-4">
+      <div className="max-w-6xl flex flex-col justify-center align-center gap-8">
         <Section title={aboutData.title} icon={<User />}>
-          <Paragraph>{aboutData.firstParagraph}</Paragraph>
-          <Paragraph>{aboutData.secondParagraph}</Paragraph>
+          <div className="flex flex-col gap-2 p-4 bg-gray-50 rounded-lg">
+            <Paragraph>{aboutData.firstParagraph}</Paragraph>
+            <Paragraph>{aboutData.secondParagraph}</Paragraph>
+          </div>
         </Section>
 
         <Section title={experienceData.title} icon={<Briefcase />}>
@@ -47,18 +49,30 @@ export const App = () => {
           <EducationList degrees={educationData.degrees} />
         </Section>
 
-        <Section title={skillsData.title} icon={<Code />}>
+        <Section title={skillsData.title} icon={<Braces />}>
           <SkillList skills={skillsData.skills} />
         </Section>
 
-        <Section title={projectsData.title} icon={<Layers />}>
+        <Section title={projectsData.title} icon={<FolderKanban />}>
           <ProjectList projects={projectsData.projects} />
         </Section>
 
-        <Section title={languagesData.title} icon={<Globe />}>
+        <Section title={languagesData.title} icon={<Languages />}>
           <LanguageList languages={languagesData.languages} />
         </Section>
       </div>
+
+      <footer className="w-full text-center text-sm text-gray-400 py-8">
+        Made with ❤️ by{' '}
+        <a
+          className="hover:text-pink-600 transition-colors duration-200"
+          href="https://github.com/miguelkashir"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          miguelkashir
+        </a>
+      </footer>
     </div>
   );
 };

@@ -24,8 +24,8 @@ export const ExpEduCard = ({
     `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
 
   return (
-    <div className="flex flex-col gap-2 p-4 bg-gray-50 rounded-lg transition-shadow duration-300">
-      <div className="flex flex-row gap-6">
+    <div className="flex flex-col gap-2 p-4 bg-gray-50 rounded-lg transition-shadow duration-300 hover:shadow-md">
+      <div className="flex flex-row gap-4">
         {logo && (
           <div className="flex items-center justify-center">
             <img
@@ -53,12 +53,12 @@ export const ExpEduCard = ({
               )}
             </span>
           </span>
-          <h3 className="text-xl font-semibold text-gray-800">{title}</h3>
+          <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
           <p className="text-pink-600 font-medium mb-2">{subtitle}</p>
         </div>
       </div>
 
-      <p className="text-gray-600 mb-3 text-sm">{description}</p>
+      <p className="text-gray-600 mb-2 text-base">{description}</p>
 
       {!!skills?.length && (
         <div className="flex flex-wrap gap-2">
