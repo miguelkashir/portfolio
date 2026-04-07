@@ -2,9 +2,9 @@ import { Header } from './comps/Header';
 import {
   Braces,
   Briefcase,
-  FolderKanban,
   GraduationCap,
   Languages,
+  Rocket,
   User,
 } from 'lucide-react';
 
@@ -53,7 +53,7 @@ export const App = () => {
           <SkillList skills={skillsData.skills} />
         </Section>
 
-        <Section title={projectsData.title} icon={<FolderKanban />}>
+        <Section title={projectsData.title} icon={<Rocket />}>
           <ProjectList projects={projectsData.projects} />
         </Section>
 
