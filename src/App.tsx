@@ -35,8 +35,6 @@ export const App = () => {
         role={headerData.role}
       />
       <div className="max-w-6xl flex flex-col justify-center align-center gap-4">
-        <Section title="Work in Progress!" icon={<Construction />} />
-
         <Section title={aboutData.title} icon={<User />}>
           <Paragraph>{aboutData.firstParagraph}</Paragraph>
           <Paragraph>{aboutData.secondParagraph}</Paragraph>
