@@ -10,7 +10,7 @@ interface HeaderProps {
   role: string;
 }
 
-const SCROLL_TRIGGER = 50;
+const SCROLL_TRIGGER = 150;
 
 const ICONS: Record<string, React.ReactNode> = {
   GitHub: (
@@ -64,7 +64,9 @@ export const Header = ({ avatar, links, name, role }: HeaderProps) => {
             {ICONS[link.label]}
             {link.label}
           </a>
-          <div className="hidden sm:block absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-700 dark:bg-gray-600 rounded whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 transition-opacity duration-200 pointer-events-none">
+          <div
+            className={`hidden sm:block absolute left-1/2 -translate-x-1/2 px-2 py-1 text-xs text-white bg-gray-700 dark:bg-gray-600 rounded whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 transition-opacity duration-200 pointer-events-none ${isScrolled ? 'top-full mt-2' : 'bottom-full mb-2'}`}
+          >
             Go to {link.url.replace(/^https?:\/\/(www\.)?/, '')}
           </div>
         </div>
@@ -81,7 +83,9 @@ export const Header = ({ avatar, links, name, role }: HeaderProps) => {
             <Moon className="w-4 h-4" />
           )}
         </button>
-        <div className="hidden sm:block absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-700 dark:bg-gray-600 rounded whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 transition-opacity duration-200 pointer-events-none">
+        <div
+          className={`hidden sm:block absolute left-1/2 -translate-x-1/2 px-2 py-1 text-xs text-white bg-gray-700 dark:bg-gray-600 rounded whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 transition-opacity duration-200 pointer-events-none ${isScrolled ? 'top-full mt-2' : 'bottom-full mb-2'}`}
+        >
           {theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
         </div>
       </div>
@@ -93,7 +97,7 @@ export const Header = ({ avatar, links, name, role }: HeaderProps) => {
       className={`sticky top-0 z-10 w-full px-4 sm:px-6 transition-all duration-300 ${
         isScrolled
           ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg py-3'
-          : 'bg-transparent py-6'
+          : 'bg-gray-50 dark:bg-gray-900 py-6'
       }`}
     >
       {isScrolled ? (
