@@ -10,7 +10,10 @@ import type {
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 
 export const Skills = {
+  ClaudeCode: { category: 'ai', level: 'proficient', name: 'Claude Code' },
+  Copilot: { category: 'ai', level: 'proficient', name: 'GitHub Copilot' },
   CSS: { category: 'frontend', level: 'expert', name: 'CSS' },
+  TailwindCSS: { category: 'frontend', level: 'proficient', name: 'Tailwind CSS' },
   ClickUp: { category: 'tooling', level: 'proficient', name: 'ClickUp' },
   Cypress: { category: 'testing', level: 'expert', name: 'Cypress' },
   Git: { category: 'tooling', level: 'expert', name: 'Git' },
@@ -48,6 +51,7 @@ export const Skills = {
     name: 'Styled Components',
   },
   TypeScript: { category: 'language', level: 'expert', name: 'TypeScript' },
+  Vite: { category: 'tooling', level: 'proficient', name: 'Vite' },
   Vue: { category: 'frontend', level: 'proficient', name: 'Vue' },
   jQuery: { category: 'frontend', level: 'familiar', name: 'jQuery' },
 } satisfies Record<string, Skill>;
@@ -93,6 +97,7 @@ export const experienceData: { title: string; experiences: Experience[] } = {
         Skills.ClickUp,
         Skills.Git,
         Skills.SCRUM,
+        Skills.Copilot,
       ],
     },
     {
@@ -171,7 +176,8 @@ export const educationData: { title: string; degrees: Degree[] } = {
       institution: 'Ironhack',
       startDate: new Date('2016-10-01'),
       endDate: new Date('2016-12-01'),
-      description: 'Focused on software development and web technologies.',
+      description:
+        'Immersive 8-week bootcamp covering 540 hours of intensive web development. Focused on clean code principles, design patterns, and test-driven development (TDD), culminating in a full-stack project shipped from scratch.',
     },
     {
       logo: `${base}images/trassierra.jpg`,
@@ -180,7 +186,8 @@ export const educationData: { title: string; degrees: Degree[] } = {
       institution: 'IES Trassierra',
       startDate: new Date('2013-09-01'),
       endDate: new Date('2015-06-01'),
-      description: 'Focused on software development and web technologies.',
+      description:
+        'Two years formation in computer application development, covering analysis and design of management applications, and developing and testing software in structured programming languages.',
     },
   ],
 };
@@ -189,17 +196,20 @@ export const projectsData: { title: string; projects: Project[] } = {
   title: 'Projects',
   projects: [
     {
-      name: 'Portfolio Website',
       description:
-        'A personal portfolio website to showcase my work and skills.',
-      technologies: [Skills.React, Skills.TypeScript, Skills.CSS],
-      link: 'https://example.com/portfolio',
-    },
-    {
-      name: 'E-commerce Platform',
-      description: 'An online store built with React and Node.js.',
-      technologies: [Skills.React, Skills.Node, Skills.MongoDB],
-      link: 'https://example.com/ecommerce',
+        'My personal portfolio and an open-source template anyone can reuse. All content is driven by a single data file — fork it, update `src/data/data.ts`, and it\'s yours.',
+      githubUrl: 'https://github.com/miguelkashir/portfolio',
+      liveUrl: 'https://miguelkashir.github.io/portfolio',
+      liveUrlTooltip: "You're already here!",
+      name: 'Portfolio Website',
+      technologies: [
+        Skills.React,
+        Skills.TypeScript,
+        Skills.TailwindCSS,
+        Skills.Vite,
+        Skills.ReactTestingLibrary,
+        Skills.ClaudeCode,
+      ],
     },
   ],
 };

@@ -4,9 +4,10 @@ export interface ContactLink {
 }
 
 export type SkillCategory =
-  | 'language'
-  | 'frontend'
+  | 'ai'
   | 'backend'
+  | 'frontend'
+  | 'language'
   | 'testing'
   | 'tooling';
 
@@ -39,10 +40,12 @@ export interface Degree {
 }
 
 export interface Project {
-  name: string;
   description: string;
+  githubUrl?: string;
+  liveUrl?: string;
+  liveUrlTooltip?: string;
+  name: string;
   technologies: Skill[];
-  link: string;
 }
 
 export interface Language {

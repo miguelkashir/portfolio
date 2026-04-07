@@ -10,9 +10,11 @@ const CATEGORY_ORDER: SkillCategory[] = [
   'backend',
   'testing',
   'tooling',
+  'ai',
 ];
 
 const CATEGORY_LABELS: Record<SkillCategory, string> = {
+  ai: 'AI',
   backend: 'Backend',
   frontend: 'Frontend',
   language: 'Languages',
@@ -43,9 +45,10 @@ export const SkillList = ({ skills }: SkillListProps) => {
       return acc;
     },
     {
-      language: [],
-      frontend: [],
+      ai: [],
       backend: [],
+      frontend: [],
+      language: [],
       testing: [],
       tooling: [],
     },

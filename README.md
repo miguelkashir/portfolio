@@ -1,12 +1,10 @@
 # Portfolio
 
-This repository serves several purposes:
+My personal portfolio and an open-source template anyone can reuse. Check it live at [miguelkashir.github.io/portfolio](https://miguelkashir.github.io/portfolio/).
 
-- It's my online portfolio, you can check it live at [miguelkashir.github.io/portfolio](https://miguelkashir.github.io/portfolio/).
-- It's a small pet project.
-- You can also use it as your portfolio.
+All content is driven by a single data file — fork it, update `src/data/data.ts`, and it's yours.
 
-If you are interested in using this repo, follow these steps:
+## Getting started
 
 ```bash
 git clone git@github.com:miguelkashir/portfolio.git
