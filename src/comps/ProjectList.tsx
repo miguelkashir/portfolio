@@ -13,10 +13,10 @@ export const ProjectList = ({ projects }: ProjectListProps) => (
         <div className="flex flex-wrap gap-2 mt-1">
           {project.technologies.map(tech => (
             <span
-              key={tech}
+              key={tech.name}
               className="px-3 py-1 text-xs font-medium text-pink-700 bg-pink-100 rounded-full"
             >
-              {tech}
+              {tech.name}
             </span>
           ))}
         </div>

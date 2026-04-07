@@ -1,12 +1,13 @@
 import { Calendar } from 'lucide-react';
 import { formatDuration } from '../utils/formatDuration';
+import type { Skill } from '../types';
 
 interface ExpEduCardProps {
   description: string;
   endDate: Date | null;
   logo?: string;
   showDuration?: boolean;
-  skills?: string[];
+  skills?: Skill[];
   startDate: Date;
   subtitle: string;
   title: string;
@@ -63,12 +64,12 @@ export const ExpEduCard = ({
 
       {!!skills?.length && (
         <div className="flex flex-wrap gap-2">
-          {skills.map(tag => (
+          {skills.map(skill => (
             <span
-              key={tag}
+              key={skill.name}
               className="px-3 py-1 text-xs font-medium text-pink-700 bg-pink-100 rounded-full"
             >
-              {tag}
+              {skill.name}
             </span>
           ))}
         </div>

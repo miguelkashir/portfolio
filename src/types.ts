@@ -1,3 +1,15 @@
+export type SkillCategory =
+  | 'language'
+  | 'frontend'
+  | 'backend'
+  | 'testing'
+  | 'tooling';
+
+export interface Skill {
+  name: string;
+  category: SkillCategory;
+}
+
 export interface Experience {
   company: string;
   logo?: string;
@@ -6,7 +18,7 @@ export interface Experience {
   startDate: Date;
   endDate: Date | null;
   description: string;
-  skills: string[];
+  skills: Skill[];
 }
 
 export interface Degree {
@@ -21,7 +33,7 @@ export interface Degree {
 export interface Project {
   name: string;
   description: string;
-  technologies: string[];
+  technologies: Skill[];
   link: string;
 }
 
