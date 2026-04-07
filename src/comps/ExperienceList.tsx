@@ -13,7 +13,6 @@ export const ExperienceList = ({ experiences }: ExperienceListProps) => (
         description={experience.description}
         endDate={experience.endDate}
         logo={experience.logo}
-        showDuration
         skills={experience.skills}
         startDate={experience.startDate}
         subtitle={experience.company}

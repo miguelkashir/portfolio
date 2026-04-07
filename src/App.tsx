@@ -48,12 +48,12 @@ export const App = () => {
           <EducationList degrees={educationData.degrees} />
         </Section>
 
-        <Section title={projectsData.title} icon={<Layers />}>
-          <ProjectList projects={projectsData.projects} />
-        </Section>
-
         <Section title={skillsData.title} icon={<Code />}>
           <SkillList skills={skillsData.skills} />
+        </Section>
+
+        <Section title={projectsData.title} icon={<Layers />}>
+          <ProjectList projects={projectsData.projects} />
         </Section>
 
         <Section title={languagesData.title} icon={<Globe />}>

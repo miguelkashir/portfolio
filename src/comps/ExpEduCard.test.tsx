@@ -53,28 +53,24 @@ describe('ExpEduCard', () => {
   });
 
   describe('date range display', () => {
-    it('shows formatted start and end dates', () => {
+    it('renders start and end dates as time elements with datetime attributes', () => {
       render(<ExpEduCard {...baseProps} />);
-      // Both year values should appear in the date string
-      expect(screen.getByText(/2022/)).toBeInTheDocument();
-      expect(screen.getByText(/2023/)).toBeInTheDocument();
+      const timeEls = document.querySelectorAll('time');
+      expect(timeEls[0]).toHaveAttribute('dateTime', '2022-01');
+      expect(timeEls[0]).toHaveTextContent('January 2022');
+      expect(timeEls[1]).toHaveAttribute('dateTime', '2023-07');
+      expect(timeEls[1]).toHaveTextContent('July 2023');
     });
 
     it('shows "Present" when endDate is null', () => {
       render(<ExpEduCard {...baseProps} endDate={null} />);
       expect(screen.getByText(/Present/)).toBeInTheDocument();
     });
-  });
 
-  describe('duration display', () => {
-    it('hides duration by default', () => {
-      render(<ExpEduCard {...baseProps} />);
-      expect(screen.queryByText(/month|year/)).not.toBeInTheDocument();
-    });
-
-    it('shows duration when showDuration is true', () => {
-      render(<ExpEduCard {...baseProps} showDuration />);
-      expect(screen.getByText(/1\.5 years/)).toBeInTheDocument();
+    it('does not render a time element for Present', () => {
+      render(<ExpEduCard {...baseProps} endDate={null} />);
+      expect(document.querySelectorAll('time')).toHaveLength(1);
     });
   });
+
 });

@@ -1,12 +1,10 @@
 import { Calendar } from 'lucide-react';
-import { formatDuration } from '../utils/formatDuration';
 import type { Skill } from '../types';
 
 interface ExpEduCardProps {
   description: string;
   endDate: Date | null;
   logo?: string;
-  showDuration?: boolean;
   skills?: Skill[];
   startDate: Date;
   subtitle: string;
@@ -17,13 +15,13 @@ export const ExpEduCard = ({
   description,
   endDate,
   logo,
-  showDuration = false,
   skills,
   startDate,
   subtitle,
   title,
 }: ExpEduCardProps) => {
-  const durationText = formatDuration(startDate, endDate);
+  const toDateTimeAttr = (date: Date) =>
+    `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
 
   return (
     <div className="flex flex-col gap-2 p-4 bg-gray-50 rounded-lg transition-shadow duration-300">
@@ -41,19 +39,19 @@ export const ExpEduCard = ({
         <div>
           <span className="text-sm text-gray-500 flex items-center">
             <Calendar className="w-4 h-4 mr-1" />
-
-            {`${startDate.toLocaleDateString(undefined, {
-              year: 'numeric',
-              month: 'short',
-            })} - ${
-              endDate
-                ? endDate.toLocaleDateString(undefined, {
-                    year: 'numeric',
-                    month: 'short',
-                  })
-                : 'Present'
-            }`}
-            {showDuration && ` (${durationText})`}
+            <span>
+              <time dateTime={toDateTimeAttr(startDate)}>
+                {startDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+              </time>
+              {' – '}
+              {endDate ? (
+                <time dateTime={toDateTimeAttr(endDate)}>
+                  {endDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+                </time>
+              ) : (
+                'Present'
+              )}
+            </span>
           </span>
           <h3 className="text-xl font-semibold text-gray-800">{title}</h3>
           <p className="text-pink-600 font-medium mb-2">{subtitle}</p>
