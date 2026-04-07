@@ -42,6 +42,7 @@ export const SkillList = ({ skills }: SkillListProps) => {
       acc[cat] = skills
         .filter(s => s.category === cat)
         .sort((a, b) => LEVEL_ORDER[a.level] - LEVEL_ORDER[b.level]);
+
       return acc;
     },
     {
