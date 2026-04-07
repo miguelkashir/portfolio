@@ -25,40 +25,48 @@ export const ExpEduCard = ({
 
   return (
     <div className="flex flex-col gap-2 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg transition-shadow duration-300 hover:shadow-md">
-      <div className="flex flex-row gap-4">
-        {logo && (
-          <div className="flex items-center justify-center">
-            <img
-              className="w-12 h-12 object-contain"
-              src={logo}
-              alt={subtitle}
-            />
-          </div>
-        )}
+      <span className="text-sm text-gray-500 dark:text-gray-400 flex items-center">
+        <Calendar className="w-4 h-4 mr-1" aria-hidden="true" />
+        <span>
+          <time dateTime={toDateTimeAttr(startDate)}>
+            {startDate.toLocaleDateString('en-US', {
+              month: 'long',
+              year: 'numeric',
+            })}
+          </time>
+          {' – '}
+          {endDate ? (
+            <time dateTime={toDateTimeAttr(endDate)}>
+              {endDate.toLocaleDateString('en-US', {
+                month: 'long',
+                year: 'numeric',
+              })}
+            </time>
+          ) : (
+            'Present'
+          )}
+        </span>
+      </span>
 
+      <div className="flex flex-row items-start gap-4">
+        {logo && (
+          <img
+            className="w-12 h-12 object-contain rounded-lg border border-gray-200 dark:border-gray-700"
+            src={logo}
+            alt={subtitle}
+          />
+        )}
         <div>
-          <span className="text-sm text-gray-500 dark:text-gray-400 flex items-center">
-            <Calendar className="w-4 h-4 mr-1" aria-hidden="true" />
-            <span>
-              <time dateTime={toDateTimeAttr(startDate)}>
-                {startDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
-              </time>
-              {' – '}
-              {endDate ? (
-                <time dateTime={toDateTimeAttr(endDate)}>
-                  {endDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
-                </time>
-              ) : (
-                'Present'
-              )}
-            </span>
-          </span>
-          <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">{title}</h3>
-          <p className="text-pink-600 font-medium mb-2">{subtitle}</p>
+          <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
+            {title}
+          </h3>
+          <p className="text-pink-600 font-medium">{subtitle}</p>
         </div>
       </div>
 
-      <p className="text-gray-600 dark:text-gray-300 mb-2 text-base">{description}</p>
+      <p className="text-gray-600 dark:text-gray-300 mb-2 text-base">
+        {description}
+      </p>
 
       {!!skills?.length && (
         <div className="flex flex-wrap gap-2">

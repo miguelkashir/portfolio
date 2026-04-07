@@ -27,13 +27,14 @@ import { LanguageList } from './comps/LanguageList';
 
 export const App = () => {
   return (
-    <div className="min-w-sm flex flex-col items-center bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 antialiased">
+    <div className="w-full flex flex-col items-center bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 antialiased">
       <Header
+        avatar={headerData.avatar}
         links={headerData.links}
         name={headerData.name}
         role={headerData.role}
       />
-      <div className="max-w-6xl flex flex-col justify-center align-center gap-8">
+      <div className="w-full max-w-6xl flex flex-col gap-8 px-4 sm:px-6 py-8">
         <Section title={aboutData.title} icon={<User />}>
           <div className="flex flex-col gap-2 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
             <Paragraph>{aboutData.firstParagraph}</Paragraph>
@@ -62,7 +63,7 @@ export const App = () => {
         </Section>
       </div>
 
-      <footer className="w-full text-center text-sm text-gray-400 dark:text-gray-500 py-8">
+      <footer className="w-full text-center text-sm text-gray-400 dark:text-gray-500 py-8 px-4">
         Made with ❤️ by{' '}
         <span className="relative inline-block group/tooltip">
           <a
@@ -73,7 +74,7 @@ export const App = () => {
           >
             miguelkashir
           </a>
-          <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-700 dark:bg-gray-600 rounded whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 transition-opacity duration-200 pointer-events-none">
+          <span className="hidden sm:block absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-700 dark:bg-gray-600 rounded whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 transition-opacity duration-200 pointer-events-none">
             Go to github.com/miguelkashir
           </span>
         </span>
