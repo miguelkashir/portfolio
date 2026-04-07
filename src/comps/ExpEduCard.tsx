@@ -24,7 +24,7 @@ export const ExpEduCard = ({
     `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
 
   return (
-    <div className="flex flex-col gap-2 p-4 bg-gray-50 rounded-lg transition-shadow duration-300 hover:shadow-md">
+    <div className="flex flex-col gap-2 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg transition-shadow duration-300 hover:shadow-md">
       <div className="flex flex-row gap-4">
         {logo && (
           <div className="flex items-center justify-center">
@@ -37,8 +37,8 @@ export const ExpEduCard = ({
         )}
 
         <div>
-          <span className="text-sm text-gray-500 flex items-center">
-            <Calendar className="w-4 h-4 mr-1" />
+          <span className="text-sm text-gray-500 dark:text-gray-400 flex items-center">
+            <Calendar className="w-4 h-4 mr-1" aria-hidden="true" />
             <span>
               <time dateTime={toDateTimeAttr(startDate)}>
                 {startDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
@@ -53,19 +53,19 @@ export const ExpEduCard = ({
               )}
             </span>
           </span>
-          <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
+          <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">{title}</h3>
           <p className="text-pink-600 font-medium mb-2">{subtitle}</p>
         </div>
       </div>
 
-      <p className="text-gray-600 mb-2 text-base">{description}</p>
+      <p className="text-gray-600 dark:text-gray-300 mb-2 text-base">{description}</p>
 
       {!!skills?.length && (
         <div className="flex flex-wrap gap-2">
           {skills.map(skill => (
             <span
               key={skill.name}
-              className="px-3 py-1 text-xs font-medium text-pink-700 bg-pink-100 rounded-full"
+              className="px-3 py-1 text-xs font-medium text-pink-700 dark:text-pink-300 bg-pink-100 dark:bg-pink-950 rounded-full"
             >
               {skill.name}
             </span>

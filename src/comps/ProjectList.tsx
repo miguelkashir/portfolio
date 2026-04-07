@@ -16,53 +16,58 @@ export const ProjectList = ({ projects }: ProjectListProps) => (
     {projects.map(project => (
       <div
         key={project.name}
-        className="flex flex-col gap-2 p-4 bg-gray-50 rounded-lg transition-shadow duration-300 hover:shadow-md"
+        className="flex flex-col gap-2 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg transition-shadow duration-300 hover:shadow-md"
       >
         <div className="flex items-center justify-between gap-2">
-          <h3 className="text-lg font-semibold text-gray-800">{project.name}</h3>
+          <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">{project.name}</h3>
           <div className="flex items-center gap-3">
             {project.githubUrl && (
-              <a
-                aria-label={`${project.name} GitHub repository`}
-                className="text-gray-400 hover:text-pink-600 transition-colors duration-200"
-                href={project.githubUrl}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                <GitHubIcon />
-              </a>
-            )}
-            {project.liveUrl && (
-              project.liveUrlTooltip ? (
-                <div className="relative group/tooltip">
-                  <span className="text-gray-300 cursor-default">
-                    <ExternalLink className="w-5 h-5" />
-                  </span>
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-700 rounded whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 transition-opacity duration-200 pointer-events-none">
-                    {project.liveUrlTooltip}
-                  </div>
-                </div>
-              ) : (
+              <div className="relative group/tooltip">
                 <a
-                  aria-label={`${project.name} live site`}
-                  className="text-gray-400 hover:text-pink-600 transition-colors duration-200"
-                  href={project.liveUrl}
+                  aria-label={`${project.name} GitHub repository`}
+                  className="text-gray-400 dark:text-gray-500 hover:text-pink-600 dark:hover:text-pink-400 transition-colors duration-200"
+                  href={project.githubUrl}
                   rel="noopener noreferrer"
                   target="_blank"
                 >
-                  <ExternalLink className="w-5 h-5" />
+                  <GitHubIcon />
                 </a>
-              )
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-700 dark:bg-gray-600 rounded whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 transition-opacity duration-200 pointer-events-none">
+                  Go to {project.githubUrl.replace(/^https?:\/\/(www\.)?/, '')}
+                </div>
+              </div>
+            )}
+            {project.liveUrl && (
+              <div className="relative group/tooltip">
+                {project.liveUrlTooltip ? (
+                  <span className="text-gray-300 dark:text-gray-600 cursor-default">
+                    <ExternalLink className="w-5 h-5" />
+                  </span>
+                ) : (
+                  <a
+                    aria-label={`${project.name} live site`}
+                    className="text-gray-400 dark:text-gray-500 hover:text-pink-600 dark:hover:text-pink-400 transition-colors duration-200"
+                    href={project.liveUrl}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <ExternalLink className="w-5 h-5" />
+                  </a>
+                )}
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-700 dark:bg-gray-600 rounded whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 transition-opacity duration-200 pointer-events-none">
+                  {project.liveUrlTooltip ?? `Go to ${project.liveUrl.replace(/^https?:\/\/(www\.)?/, '')}`}
+                </div>
+              </div>
             )}
           </div>
         </div>
-        <p className="text-gray-600 text-base">{project.description}</p>
+        <p className="text-gray-600 dark:text-gray-300 text-base">{project.description}</p>
         {project.technologies.length > 0 && (
           <div className="flex flex-wrap gap-2">
             {project.technologies.map(tech => (
               <span
                 key={tech.name}
-                className="px-3 py-1 text-xs font-medium text-pink-700 bg-pink-100 rounded-full"
+                className="px-3 py-1 text-xs font-medium text-pink-700 dark:text-pink-300 bg-pink-100 dark:bg-pink-950 rounded-full"
               >
                 {tech.name}
               </span>

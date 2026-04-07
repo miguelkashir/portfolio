@@ -31,9 +31,9 @@ const LEVEL_ORDER: Record<SkillLevel, number> = {
 const LEVEL_STYLES: Record<SkillLevel, string> = {
   expert: 'px-3 py-1 text-xs font-medium text-white bg-pink-600 rounded-full',
   familiar:
-    'px-3 py-1 text-xs font-medium text-pink-400 border border-pink-200 rounded-full',
+    'px-3 py-1 text-xs font-medium text-pink-400 dark:text-pink-400 border border-pink-200 dark:border-pink-800 rounded-full',
   proficient:
-    'px-3 py-1 text-xs font-medium text-pink-700 bg-pink-100 rounded-full',
+    'px-3 py-1 text-xs font-medium text-pink-700 dark:text-pink-300 bg-pink-100 dark:bg-pink-950 rounded-full',
 };
 
 export const SkillList = ({ skills }: SkillListProps) => {
@@ -55,10 +55,10 @@ export const SkillList = ({ skills }: SkillListProps) => {
   );
 
   return (
-    <div className="flex flex-col gap-4 p-4 bg-gray-50 rounded-lg">
+    <div className="flex flex-col gap-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
       {CATEGORY_ORDER.filter(cat => grouped[cat].length > 0).map(cat => (
         <div key={cat}>
-          <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2">
+          <p className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-2">
             {CATEGORY_LABELS[cat]}
           </p>
           <div className="flex flex-wrap gap-2">

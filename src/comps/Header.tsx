@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
+import { Moon, Sun } from 'lucide-react';
 import type { ContactLink } from '../types';
+import { useTheme } from '../context/ThemeContext';
 
 interface HeaderProps {
   links: ContactLink[];
@@ -34,6 +36,7 @@ const ICONS: Record<string, React.ReactNode> = {
 
 export const Header = ({ links, name, role }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,28 +54,44 @@ export const Header = ({ links, name, role }: HeaderProps) => {
     <header
       className={`flex flex-col items-center text-center sticky top-0 z-10 w-full transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/90 backdrop-blur-md shadow-lg py-3'
+          ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg py-3'
           : 'bg-transparent py-6'
       }`}
     >
-      <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">
+      <h1 className="text-3xl font-extrabold text-gray-900 dark:text-gray-50 tracking-tight">
         {name}
       </h1>
       <p className="text-lg text-pink-600 font-semibold mt-1">{role}</p>
 
-      <nav aria-label="Contact links" className="flex gap-4 mt-3">
+      <nav aria-label="Contact links" className="flex items-center gap-4 mt-3">
         {links.map(link => (
-          <a
-            key={link.label}
-            href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-pink-600 transition-colors duration-200"
-          >
-            {ICONS[link.label]}
-            {link.label}
-          </a>
+          <div key={link.label} className="relative group/tooltip">
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-pink-600 dark:hover:text-pink-400 transition-colors duration-200"
+            >
+              {ICONS[link.label]}
+              {link.label}
+            </a>
+            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-700 dark:bg-gray-600 rounded whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 transition-opacity duration-200 pointer-events-none">
+              Go to {link.url.replace(/^https?:\/\/(www\.)?/, '')}
+            </div>
+          </div>
         ))}
+        <div className="relative group/tooltip">
+          <button
+            aria-label="Toggle dark mode"
+            onClick={toggleTheme}
+            className="cursor-pointer text-gray-500 dark:text-gray-400 hover:text-pink-600 dark:hover:text-pink-400 transition-colors duration-200"
+          >
+            {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+          </button>
+          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-700 dark:bg-gray-600 rounded whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 transition-opacity duration-200 pointer-events-none">
+            {theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+          </div>
+        </div>
       </nav>
     </header>
   );
