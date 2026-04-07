@@ -14,10 +14,14 @@ async function prerender() {
 
   try {
     const { render } = await vite.ssrLoadModule('/src/entry-server.tsx');
+    const { generateJsonLd } = await vite.ssrLoadModule('/src/jsonld.ts');
     const appHtml = render();
+    const jsonLd = generateJsonLd();
 
     const template = fs.readFileSync(path.resolve(rootDir, 'dist/index.html'), 'utf-8');
-    const html = template.replace('<!--app-html-->', appHtml);
+    const html = template
+      .replace('<!--app-html-->', appHtml)
+      .replace('<!--jsonld-->', jsonLd);
 
     fs.writeFileSync(path.resolve(rootDir, 'dist/index.html'), html);
     console.log('Pre-rendered dist/index.html');

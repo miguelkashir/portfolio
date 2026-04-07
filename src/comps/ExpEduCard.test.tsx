@@ -33,8 +33,8 @@ describe('ExpEduCard', () => {
 
     it('renders skill tags when provided', () => {
       const skills = [
-        { name: 'React', category: 'frontend' as const },
-        { name: 'TypeScript', category: 'language' as const },
+        { category: 'frontend' as const, level: 'expert' as const, name: 'React' },
+        { category: 'language' as const, level: 'expert' as const, name: 'TypeScript' },
       ];
       render(<ExpEduCard {...baseProps} skills={skills} />);
       expect(screen.getByText('React')).toBeInTheDocument();
