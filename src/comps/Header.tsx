@@ -105,7 +105,7 @@ export const Header = ({ avatar, links, name, role }: HeaderProps) => {
           <div className="flex items-center gap-3">
             <img
               alt={name}
-              className="w-9 h-9 rounded-full object-cover object-top flex-shrink-0"
+              className="w-9 h-9 rounded-full object-cover object-top shrink-0"
               src={avatar}
             />
             <div className="leading-tight">

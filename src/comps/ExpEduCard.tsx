@@ -1,5 +1,6 @@
 import { Calendar } from 'lucide-react';
 import type { Skill } from '../types';
+import { sortSkills } from '../utils/sortSkills';
 
 interface ExpEduCardProps {
   description: string;
@@ -70,7 +71,7 @@ export const ExpEduCard = ({
 
       {!!skills?.length && (
         <div className="flex flex-wrap gap-2">
-          {skills.map(skill => (
+          {sortSkills(skills).map(skill => (
             <span
               key={skill.name}
               className="px-3 py-1 text-xs font-medium text-pink-700 dark:text-pink-300 bg-pink-100 dark:bg-pink-950 rounded-full"

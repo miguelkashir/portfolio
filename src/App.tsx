@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Header } from './comps/Header';
 import {
   Braces,
@@ -23,9 +24,30 @@ import { ExperienceList } from './comps/ExperienceList';
 import { EducationList } from './comps/EducationList';
 import { ProjectList } from './comps/ProjectList';
 import { SkillList } from './comps/SkillList';
+import type { GroupMode } from './comps/SkillList';
 import { LanguageList } from './comps/LanguageList';
 
 export const App = () => {
+  const [skillMode, setSkillMode] = useState<GroupMode>('level');
+
+  const skillToggle = (
+    <div className="flex gap-4">
+      {(['level', 'category'] as GroupMode[]).map(m => (
+        <button
+          key={m}
+          onClick={() => setSkillMode(m)}
+          className={`text-sm cursor-pointer transition-colors duration-200 ${
+            skillMode === m
+              ? 'text-pink-600 font-semibold'
+              : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300'
+          }`}
+        >
+          {m === 'level' ? 'By expertise' : 'By category'}
+        </button>
+      ))}
+    </div>
+  );
+
   return (
     <div className="w-full flex flex-col items-center bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 antialiased">
       <Header
@@ -50,8 +72,12 @@ export const App = () => {
           <EducationList degrees={educationData.degrees} />
         </Section>
 
-        <Section title={skillsData.title} icon={<Braces />}>
-          <SkillList skills={skillsData.skills} />
+        <Section
+          title={skillsData.title}
+          icon={<Braces />}
+          headerAction={skillToggle}
+        >
+          <SkillList mode={skillMode} skills={skillsData.skills} />
         </Section>
 
         <Section title={projectsData.title} icon={<Rocket />}>

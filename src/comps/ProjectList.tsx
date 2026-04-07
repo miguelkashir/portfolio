@@ -1,5 +1,6 @@
 import { ExternalLink } from 'lucide-react';
 import type { Project } from '../types';
+import { sortSkills } from '../utils/sortSkills';
 
 interface ProjectListProps {
   projects: Project[];
@@ -74,7 +75,7 @@ export const ProjectList = ({ projects }: ProjectListProps) => (
         </p>
         {project.technologies.length > 0 && (
           <div className="flex flex-wrap gap-2">
-            {project.technologies.map(tech => (
+            {sortSkills(project.technologies).map(tech => (
               <span
                 key={tech.name}
                 className="px-3 py-1 text-xs font-medium text-pink-700 dark:text-pink-300 bg-pink-100 dark:bg-pink-950 rounded-full"

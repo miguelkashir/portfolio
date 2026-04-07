@@ -11,9 +11,13 @@ export type SkillCategory =
   | 'testing'
   | 'tooling';
 
+export type SkillLevel = 'expert' | 'proficient';
+
 export interface Skill {
   category: SkillCategory;
+  level: SkillLevel;
   name: string;
+  order: number;
 }
 
 export interface Experience {
