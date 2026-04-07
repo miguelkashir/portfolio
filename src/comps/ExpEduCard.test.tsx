@@ -33,8 +33,8 @@ describe('ExpEduCard', () => {
 
     it('renders skill tags when provided', () => {
       const skills = [
-        { category: 'frontend' as const, level: 'expert' as const, name: 'React' },
-        { category: 'language' as const, level: 'expert' as const, name: 'TypeScript' },
+        { category: 'frontend' as const, name: 'React' },
+        { category: 'language' as const, name: 'TypeScript' },
       ];
       render(<ExpEduCard {...baseProps} skills={skills} />);
       expect(screen.getByText('React')).toBeInTheDocument();
@@ -72,5 +72,4 @@ describe('ExpEduCard', () => {
       expect(document.querySelectorAll('time')).toHaveLength(1);
     });
   });
-
 });

@@ -14,6 +14,7 @@ npm run deploy       # Deploy to GitHub Pages (gh-pages -d dist)
 ```
 
 Run a single test file:
+
 ```bash
 npx vitest run src/comps/ExpEduCard.test.tsx
 ```
@@ -31,11 +32,14 @@ This is a pre-rendered (SSG) single-page portfolio. There is no routing, no API,
 **Skills:** All skills are defined as objects in the `Skills` registry in `data.ts` (`Skills.React`, `Skills.TypeScript`, etc.), typed via `satisfies Record<string, Skill>`. Each skill has `name` and `category` (`SkillCategory` union: `'language' | 'frontend' | 'backend' | 'testing' | 'tooling'`). Both `Experience.skills` and `Project.technologies` use `Skill[]`.
 
 **Component structure:**
+
 - `Header` — sticky header that compresses on scroll; receives `name`, `role`, and `links: ContactLink[]` as props; includes inline SVG icons for LinkedIn/GitHub
 - `Section` — labeled card wrapper accepting a Lucide `icon` and `children`
 - `ExpEduCard` — reused for both experience and education entries; accepts `startDate`/`endDate` and optionally shows a human-readable duration via `formatDuration`
 - `ExperienceList`, `EducationList`, `ProjectList`, `SkillList`, `LanguageList` — one component per section, each accepts only the slice of data it needs
 - `Paragraph` — thin text wrapper
+
+**Theme/Context:** `src/context/ThemeContext.tsx` holds `ThemeProvider`, `ThemeContext`, and `ThemeContextValue`. The `useTheme` hook lives separately in `src/context/useTheme.ts`. This split is required by the `react-refresh/only-export-components` ESLint rule — hooks and providers must not share a file.
 
 **Utilities:** `src/utils/formatDuration.ts` — pure function that converts a date range into a human-readable string (e.g. "1.5 years"). Has its own unit tests in `src/utils/formatDuration.test.ts`.
 

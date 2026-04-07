@@ -1,4 +1,4 @@
-import type { Skill, SkillCategory, SkillLevel } from '../types';
+import type { Skill, SkillCategory } from '../types';
 
 interface SkillListProps {
   skills: Skill[];
@@ -22,26 +22,13 @@ const CATEGORY_LABELS: Record<SkillCategory, string> = {
   tooling: 'Tooling',
 };
 
-const LEVEL_ORDER: Record<SkillLevel, number> = {
-  expert: 0,
-  proficient: 1,
-  familiar: 2,
-};
-
-const LEVEL_STYLES: Record<SkillLevel, string> = {
-  expert: 'px-3 py-1 text-xs font-medium text-white bg-pink-600 rounded-full',
-  familiar:
-    'px-3 py-1 text-xs font-medium text-pink-400 dark:text-pink-400 border border-pink-200 dark:border-pink-800 rounded-full',
-  proficient:
-    'px-3 py-1 text-xs font-medium text-pink-700 dark:text-pink-300 bg-pink-100 dark:bg-pink-950 rounded-full',
-};
+const PILL_STYLE =
+  'px-3 py-1 text-xs font-medium text-pink-700 dark:text-pink-300 bg-pink-100 dark:bg-pink-950 rounded-full';
 
 export const SkillList = ({ skills }: SkillListProps) => {
   const grouped = CATEGORY_ORDER.reduce<Record<SkillCategory, Skill[]>>(
     (acc, cat) => {
-      acc[cat] = skills
-        .filter(s => s.category === cat)
-        .sort((a, b) => LEVEL_ORDER[a.level] - LEVEL_ORDER[b.level]);
+      acc[cat] = skills.filter(s => s.category === cat);
 
       return acc;
     },
@@ -64,7 +51,7 @@ export const SkillList = ({ skills }: SkillListProps) => {
           </p>
           <div className="flex flex-wrap gap-2">
             {grouped[cat].map(skill => (
-              <span key={skill.name} className={LEVEL_STYLES[skill.level]}>
+              <span key={skill.name} className={PILL_STYLE}>
                 {skill.name}
               </span>
             ))}
