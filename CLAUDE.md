@@ -27,27 +27,34 @@ This is a pre-rendered (SSG) single-page portfolio. There is no routing, no API,
 
 **Data flow:** All portfolio content lives in `src/data/data.ts` as plain TypeScript constants. `App.tsx` imports everything from there, passes data down to section components as props, and is the only file that wires data to the UI.
 
-**Domain types:** All interfaces and types live in `src/types.ts` — `Experience`, `Degree`, `Project`, `Language`, `ContactLink`, `Skill`, `SkillCategory`. `data.ts` imports from there. Components that need a type import it from `src/types.ts`, not from `data.ts`.
+**Domain types:** All interfaces and types live in `src/types.ts` — `Experience`, `Degree`, `Project`, `Language`, `ContactLink`, `Skill`, `SkillCategory`, `SkillLevel`. `data.ts` imports from there. Components that need a type import it from `src/types.ts`, not from `data.ts`.
 
-**Skills:** All skills are defined as objects in the `Skills` registry in `data.ts` (`Skills.React`, `Skills.TypeScript`, etc.), typed via `satisfies Record<string, Skill>`. Each skill has `name` and `category` (`SkillCategory` union: `'language' | 'frontend' | 'backend' | 'testing' | 'tooling'`). Both `Experience.skills` and `Project.technologies` use `Skill[]`.
+**Skills:** All skills are defined in the `Skills` registry in `data.ts`, typed via `satisfies Record<string, Skill>`. Each skill has `name`, `category` (`SkillCategory`: `'language' | 'frontend' | 'backend' | 'testing' | 'tooling' | 'ai'`), `level` (`SkillLevel`: `'expert' | 'proficient'`), and `order` (display position within the category, 0-based). Both `Experience.skills` and `Project.technologies` use `Skill[]`. Skills are sorted globally via `src/utils/sortSkills.ts` (by category first using `CATEGORY_ORDER`, then by `order` within the category). This sort is applied in `SkillList`, `ExpEduCard`, and `ProjectList`.
+
+**SkillList toggle:** The Skills section has a toggle ("By expertise" / "By category") managed as state in `App.tsx` and passed to `Section` as `headerAction` and to `SkillList` as `mode`. `GroupMode` is exported from `SkillList.tsx`. "By expertise" is the default view.
 
 **Component structure:**
 
-- `Header` — sticky header that compresses on scroll; receives `name`, `role`, and `links: ContactLink[]` as props; includes inline SVG icons for LinkedIn/GitHub
-- `Section` — labeled card wrapper accepting a Lucide `icon` and `children`
+- `Header` — sticky header with two states: expanded (avatar + name + role + nav, `bg-gray-50`) and compact on scroll (small avatar + name/role left, nav right, `bg-white/90 backdrop-blur`). Scroll threshold: 150px. Avatar from `headerData.avatar`.
+- `Section` — labeled card wrapper accepting a Lucide `icon`, `children`, and optional `headerAction` (rendered right-aligned in the title row)
 - `ExpEduCard` — reused for both experience and education entries; accepts `startDate`/`endDate` and optionally shows a human-readable duration via `formatDuration`
 - `ExperienceList`, `EducationList`, `ProjectList`, `SkillList`, `LanguageList` — one component per section, each accepts only the slice of data it needs
 - `Paragraph` — thin text wrapper
 
 **Theme/Context:** `src/context/ThemeContext.tsx` holds `ThemeProvider`, `ThemeContext`, and `ThemeContextValue`. The `useTheme` hook lives separately in `src/context/useTheme.ts`. This split is required by the `react-refresh/only-export-components` ESLint rule — hooks and providers must not share a file.
 
-**Utilities:** `src/utils/formatDuration.ts` — pure function that converts a date range into a human-readable string (e.g. "1.5 years"). Has its own unit tests in `src/utils/formatDuration.test.ts`.
+**Utilities:**
 
-**Styling:** Tailwind CSS v4 (via `@tailwindcss/vite` plugin — no `tailwind.config`). Prettier config in `.prettierrc` enforces single quotes, 2-space indent, trailing commas. Pink (`pink-600`, `pink-100`, etc.) is the accent color used consistently across all components. Technology/skill tags use the same pink pill style everywhere.
+- `src/utils/formatDuration.ts` — pure function that converts a date range into a human-readable string (e.g. "1.5 years"). Has its own unit tests in `src/utils/formatDuration.test.ts`.
+- `src/utils/sortSkills.ts` — exports `sortSkills(skills)` and `CATEGORY_ORDER`. Used anywhere skills are rendered.
+
+**Styling:** Tailwind CSS v4 (via `@tailwindcss/vite` plugin — no `tailwind.config`). Dark mode via `@custom-variant dark (&:where(.dark, .dark *))` in `style.css`; dark class set on `<html>` by a blocking inline script in `index.html` to prevent FOUC. `overflow-x: hidden` is on `body` (not a wrapper div) to avoid breaking `position: sticky`. Prettier config in `.prettierrc` enforces single quotes, 2-space indent, trailing commas. Pink (`pink-600`, `pink-100`, etc.) is the accent color. Skill/tech tags use level-based styles: expert = solid `bg-pink-600 text-white`, proficient = `bg-pink-100 text-pink-700 dark:bg-pink-950 dark:text-pink-300`.
+
+**Tooltips:** Pattern is `relative group/tooltip` on the trigger with an absolutely positioned child using `opacity-0 group-hover/tooltip:opacity-100`. Hidden on mobile via `hidden sm:block`. In the Header, tooltip direction flips based on `isScrolled` (`top-full mt-2` when scrolled, `bottom-full mb-2` when expanded).
 
 **Testing:** Vitest + jsdom + `@testing-library/react`. Setup file at `src/test/setup.ts` imports `@testing-library/jest-dom`. Test files live alongside source files (`*.test.tsx`, `*.test.ts`).
 
-**Deployment:** Vite builds to `dist/`, served under the `/portfolio` base path (configured in `vite.config.ts`). Deploy target is GitHub Pages.
+**Deployment:** Vite builds to `dist/`, served under the `/portfolio` base path (configured in `vite.config.ts`). Deploy target is GitHub Pages. Favicon is `public/favicon.svg` (pink rounded square with white "M").
 
 ## Adding a new section
 
