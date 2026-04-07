@@ -1,3 +1,8 @@
+export interface ContactLink {
+  label: string;
+  url: string;
+}
+
 export type SkillCategory =
   | 'language'
   | 'frontend'

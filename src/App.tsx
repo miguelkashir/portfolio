@@ -29,7 +29,7 @@ import { LanguageList } from './comps/LanguageList';
 export const App = () => {
   return (
     <div className="min-w-sm flex flex-col items-center bg-gray-50 text-gray-800 antialiased">
-      <Header name={headerData.name} role={headerData.role} />
+      <Header links={headerData.links} name={headerData.name} role={headerData.role} />
       <div className="max-w-6xl flex flex-col justify-center align-center gap-4">
         {/* WIP*/}
         <Section title="Work in Progress!" icon={<Construction />} />

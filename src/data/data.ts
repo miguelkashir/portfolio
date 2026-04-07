@@ -1,11 +1,18 @@
-import geniallyLogo from '../assets/genially.jpg';
-import corusLogo from '../assets/corus.jpg';
-import glownetLogo from '../assets/glownet.jpg';
-import justLandedLogo from '../assets/justlanded.jpg';
-import ironhackLogo from '../assets/ironhack.jpg';
-import trassierraLogo from '../assets/trassierra.jpg';
+import geniallyLogo from '../assets/images/genially.jpg';
+import corusLogo from '../assets/images/corus.jpg';
+import glownetLogo from '../assets/images/glownet.jpg';
+import justLandedLogo from '../assets/images/justlanded.jpg';
+import ironhackLogo from '../assets/images/ironhack.jpg';
+import trassierraLogo from '../assets/images/trassierra.jpg';
 
-import type { Degree, Experience, Language, Project, Skill } from '../types';
+import type {
+  ContactLink,
+  Degree,
+  Experience,
+  Language,
+  Project,
+  Skill,
+} from '../types';
 
 export const Skills = {
   JavaScript: { name: 'JavaScript', category: 'language' },
@@ -38,10 +45,15 @@ export const Skills = {
   Redmine: { name: 'Redmine', category: 'tooling' },
 } satisfies Record<string, Skill>;
 
-export const headerData = {
-  name: 'Miguel Angel Alvarez',
-  role: 'Senior Frontend Developer',
-};
+export const headerData: { links: ContactLink[]; name: string; role: string } =
+  {
+    links: [
+      { label: 'LinkedIn', url: 'https://linkedin.com/in/miguelkashir' },
+      { label: 'GitHub', url: 'https://github.com/miguelkashir' },
+    ],
+    name: 'Miguel Angel Alvarez',
+    role: 'Senior Frontend Developer',
+  };
 
 export const aboutData = {
   title: 'About',
