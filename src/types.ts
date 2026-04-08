@@ -42,9 +42,8 @@ export interface Degree {
 
 export interface Project {
   description: string;
-  githubUrl?: string;
+  githubUrl: string;
   liveUrl?: string;
-  liveUrlTooltip?: string;
   name: string;
   technologies: Skill[];
 }

@@ -36,26 +36,32 @@ export const Skills = {
     name: 'Styled Components',
     order: 4,
   },
-  Vue: { category: 'frontend', level: 'proficient', name: 'Vue', order: 5 },
+  NextJS: {
+    category: 'frontend',
+    level: 'proficient',
+    name: 'Next.js',
+    order: 5,
+  },
+  Vue: { category: 'frontend', level: 'proficient', name: 'Vue', order: 6 },
   Angular: {
     category: 'frontend',
     level: 'proficient',
     name: 'Angular',
-    order: 6,
+    order: 7,
   },
   jQuery: {
     category: 'frontend',
     level: 'proficient',
     name: 'jQuery',
-    order: 7,
+    order: 8,
   },
   TailwindCSS: {
     category: 'frontend',
     level: 'proficient',
     name: 'Tailwind CSS',
-    order: 8,
+    order: 9,
   },
-  SCSS: { category: 'frontend', level: 'proficient', name: 'SCSS', order: 9 },
+  SCSS: { category: 'frontend', level: 'proficient', name: 'SCSS', order: 10 },
 
   // Backend
   Node: { category: 'backend', level: 'proficient', name: 'Node', order: 0 },
@@ -297,11 +303,23 @@ export const projectsData: { title: string; projects: Project[] } = {
   title: 'Projects',
   projects: [
     {
+      name: 'Image Metadata Killer',
       description:
-        "My personal portfolio and an open-source template anyone can reuse. All content is driven by a single data file — fork it, update `src/data/data.ts`, and it's yours.",
+        'Open source tool that allows you to remove any metadata from your photos and pictures: EXIF data, GPS coordinates, camera info and more. All happens in your browser, files never leave your device.',
+      githubUrl: 'https://github.com/miguelkashir/image-metadata-killer',
+      liveUrl: 'https://image-metadata-killer.vercel.app',
+      technologies: [
+        Skills.NextJS,
+        Skills.TypeScript,
+        Skills.TailwindCSS,
+        Skills.Vite,
+        Skills.ClaudeCode,
+      ],
+    },
+    {
+      description:
+        'My personal portfolio and an open-source template anyone can reuse.',
       githubUrl: 'https://github.com/miguelkashir/portfolio',
-      liveUrl: 'https://miguelkashir.github.io/portfolio',
-      liveUrlTooltip: "You're already here!",
       name: 'Portfolio Website',
       technologies: [
         Skills.React,
