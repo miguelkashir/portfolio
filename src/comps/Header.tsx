@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Moon, Sun } from 'lucide-react';
+import { Download, Moon, Sun } from 'lucide-react';
 import type { ContactLink } from '../types';
 import { useTheme } from '../context/useTheme';
 
@@ -7,6 +7,7 @@ interface HeaderProps {
   avatar: string;
   links: ContactLink[];
   name: string;
+  resumeUrl: string;
   role: string;
 }
 
@@ -35,7 +36,13 @@ const ICONS: Record<string, React.ReactNode> = {
   ),
 };
 
-export const Header = ({ avatar, links, name, role }: HeaderProps) => {
+export const Header = ({
+  avatar,
+  links,
+  name,
+  resumeUrl,
+  role,
+}: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
@@ -51,7 +58,7 @@ export const Header = ({ avatar, links, name, role }: HeaderProps) => {
     };
   }, []);
 
-  const nav = (
+  const makeNav = (tooltipBelow: boolean) => (
     <nav aria-label="Contact links" className="flex items-center gap-4">
       {links.map(link => (
         <div key={link.label} className="relative group/tooltip">
@@ -65,12 +72,28 @@ export const Header = ({ avatar, links, name, role }: HeaderProps) => {
             {link.label}
           </a>
           <div
-            className={`hidden sm:block absolute left-1/2 -translate-x-1/2 px-2 py-1 text-xs text-white bg-gray-700 dark:bg-gray-600 rounded whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 transition-opacity duration-200 pointer-events-none ${isScrolled ? 'top-full mt-2' : 'bottom-full mb-2'}`}
+            className={`hidden sm:block absolute left-1/2 -translate-x-1/2 px-2 py-1 text-xs text-white bg-gray-700 dark:bg-gray-600 rounded whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 transition-opacity duration-200 pointer-events-none ${tooltipBelow ? 'top-full mt-2' : 'bottom-full mb-2'}`}
           >
             Go to {link.url.replace(/^https?:\/\/(www\.)?/, '')}
           </div>
         </div>
       ))}
+      <div className="relative group/tooltip">
+        <a
+          href={resumeUrl}
+          rel="noopener noreferrer"
+          target="_blank"
+          className="flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400 hover:text-pink-600 dark:hover:text-pink-400 transition-colors duration-200"
+        >
+          <Download className="w-4 h-4" />
+          Resume
+        </a>
+        <div
+          className={`hidden sm:block absolute left-1/2 -translate-x-1/2 px-2 py-1 text-xs text-white bg-gray-700 dark:bg-gray-600 rounded whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 transition-opacity duration-200 pointer-events-none ${tooltipBelow ? 'top-full mt-2' : 'bottom-full mb-2'}`}
+        >
+          View PDF resume
+        </div>
+      </div>
       <div className="relative group/tooltip">
         <button
           aria-label="Toggle dark mode"
@@ -84,7 +107,7 @@ export const Header = ({ avatar, links, name, role }: HeaderProps) => {
           )}
         </button>
         <div
-          className={`hidden sm:block absolute left-1/2 -translate-x-1/2 px-2 py-1 text-xs text-white bg-gray-700 dark:bg-gray-600 rounded whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 transition-opacity duration-200 pointer-events-none ${isScrolled ? 'top-full mt-2' : 'bottom-full mb-2'}`}
+          className={`hidden sm:block absolute left-1/2 -translate-x-1/2 px-2 py-1 text-xs text-white bg-gray-700 dark:bg-gray-600 rounded whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 transition-opacity duration-200 pointer-events-none ${tooltipBelow ? 'top-full mt-2' : 'bottom-full mb-2'}`}
         >
           {theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
         </div>
@@ -93,14 +116,27 @@ export const Header = ({ avatar, links, name, role }: HeaderProps) => {
   );
 
   return (
-    <header
-      className={`sticky top-0 z-10 w-full px-4 sm:px-6 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg py-3'
-          : 'bg-gray-50 dark:bg-gray-900 py-6'
-      }`}
-    >
-      {isScrolled ? (
+    <>
+      <header className="w-full px-4 sm:px-6 py-6 bg-gray-50 dark:bg-gray-900">
+        <div className="flex flex-col items-center text-center">
+          <img
+            alt={name}
+            className="w-28 h-28 rounded-full object-cover object-top mb-4 ring-2 ring-pink-200 dark:ring-pink-900"
+            src={avatar}
+          />
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-gray-50 tracking-tight">
+            {name}
+          </h1>
+          <p className="text-base sm:text-lg text-pink-600 font-semibold mt-1">
+            {role}
+          </p>
+          <div className="mt-3">{makeNav(false)}</div>
+        </div>
+      </header>
+
+      <div
+        className={`fixed top-0 left-0 z-10 w-full px-4 sm:px-6 py-3 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg ${isScrolled ? '' : 'hidden'}`}
+      >
         <div className="max-w-6xl mx-auto flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <img
@@ -115,24 +151,9 @@ export const Header = ({ avatar, links, name, role }: HeaderProps) => {
               <p className="text-xs text-pink-600 font-semibold">{role}</p>
             </div>
           </div>
-          {nav}
+          {makeNav(true)}
         </div>
-      ) : (
-        <div className="flex flex-col items-center text-center">
-          <img
-            alt={name}
-            className="w-28 h-28 rounded-full object-cover object-top mb-4 ring-2 ring-pink-200 dark:ring-pink-900"
-            src={avatar}
-          />
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-gray-50 tracking-tight">
-            {name}
-          </h1>
-          <p className="text-base sm:text-lg text-pink-600 font-semibold mt-1">
-            {role}
-          </p>
-          <div className="mt-3">{nav}</div>
-        </div>
-      )}
-    </header>
+      </div>
+    </>
   );
 };

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { generateJsonLd } from './jsonld';
+import resumeUrl from './docs/Miguel Angel Alvarez Resume - LinkedIn Github.pdf?url';
 import { Header } from './comps/Header';
 import {
   Braces,
@@ -64,6 +65,7 @@ export const App = () => {
         avatar={headerData.avatar}
         links={headerData.links}
         name={headerData.name}
+        resumeUrl={resumeUrl}
         role={headerData.role}
       />
       <div className="w-full max-w-6xl flex flex-col gap-8 px-4 sm:px-6 py-8">
