@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { generateJsonLd } from './jsonld';
 import { Header } from './comps/Header';
 import {
   Braces,
@@ -29,6 +30,15 @@ import { LanguageList } from './comps/LanguageList';
 
 export const App = () => {
   const [skillMode, setSkillMode] = useState<GroupMode>('level');
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(generateJsonLd());
+    document.head.appendChild(script);
+
+    return () => script.remove();
+  }, []);
 
   const skillToggle = (
     <div className="flex gap-4">

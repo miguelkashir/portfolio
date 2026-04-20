@@ -2,10 +2,10 @@ import { Skills, educationData, experienceData, headerData } from './data/data';
 
 const SITE_URL = 'https://miguelkashir.github.io/portfolio';
 
-export function generateJsonLd(): string {
+export function generateJsonLd(): object {
   const currentJob = experienceData.experiences[0];
 
-  const data = {
+  return {
     '@context': 'https://schema.org',
     '@type': 'Person',
     alumniOf: educationData.degrees.map(d => ({
@@ -23,6 +23,4 @@ export function generateJsonLd(): string {
       name: currentJob.company,
     },
   };
-
-  return `<script type="application/ld+json">${JSON.stringify(data)}</script>`;
 }

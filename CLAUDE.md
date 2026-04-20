@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 npm run dev          # Start dev server (opens browser automatically)
-npm run build        # Type-check + Vite build + pre-render HTML (SSG)
+npm run build        # Type-check + Vite build
 npm run lint         # ESLint
 npm run test         # Vitest in watch mode
 npm run test:run     # Vitest single run (CI)
@@ -21,9 +21,9 @@ npx vitest run src/comps/ExpEduCard.test.tsx
 
 ## Architecture
 
-This is a pre-rendered (SSG) single-page portfolio. There is no routing, no API, and no state management library.
+This is a client-rendered single-page portfolio. There is no routing, no API, and no state management library.
 
-**Build pipeline:** `tsc -b && vite build && node scripts/prerender.js`. The prerender script spins up a Vite SSR server, loads `src/entry-server.tsx`, renders the app to an HTML string, and injects it into `dist/index.html`. This makes all content readable by bots and crawlers without executing JavaScript. The client hydrates via `hydrateRoot` in `src/main.tsx`.
+**Build pipeline:** `tsc -b && vite build`. The app mounts via `createRoot` in `src/main.tsx`. JSON-LD structured data is injected into `<head>` at runtime via a `useEffect` in `App.tsx` using `src/jsonld.ts`.
 
 **Data flow:** All portfolio content lives in `src/data/data.ts` as plain TypeScript constants. `App.tsx` imports everything from there, passes data down to section components as props, and is the only file that wires data to the UI.
 
