@@ -165,7 +165,7 @@ export const headerData: {
     { label: 'GitHub', url: 'https://github.com/miguelkashir' },
   ],
   name: 'Miguel Angel Alvarez',
-  role: 'Software Engineer',
+  role: 'Frontend Engineer',
 };
 
 export const aboutData = {
@@ -184,7 +184,7 @@ export const experienceData: { title: string; experiences: Experience[] } = {
       location: 'Córdoba, Spain',
       role: 'Senior Frontend Developer',
       startDate: new Date('2020-03-01'),
-      endDate: null,
+      endDate: new Date('2026-04-01'),
       description:
         'Spent six years evolving an interactive content platform. Rotating through multiple squads gave me a deep, end-to-end understanding of the product. I collaborate closely with design and backend teams to ship scalable features, often pair-programming. Beyond coding, I drive architectural decisions and maintain our Design System, using data to continuously refine the user experience.',
       skills: [
